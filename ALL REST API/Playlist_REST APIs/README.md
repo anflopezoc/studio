@@ -21,8 +21,8 @@ You can clone or download the API's repository and then you need to create the .
     DB_PORT='3306'
     DB_USER='root'
     DB_PASSWORD='root'
-    DB_DATABASE='57blocks_homework'
-    SIGNATUREJWT='57BlocksSignature'
+    DB_DATABASE='MyPlaylistRESTAPI'
+    SIGNATUREJWT='MyPlaylistSignature'
 
 The .env file settings can be created based on your preferences and settings on the PC for API review and MariaDB.
 
