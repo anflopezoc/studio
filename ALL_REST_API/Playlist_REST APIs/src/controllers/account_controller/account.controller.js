@@ -20,10 +20,20 @@ exports.signin = async (req, res) =>{
         if(emailValidated) {
             if (passwordValidated) {
                 const newUser = await db.Users.create({
-                    email:emailValidated,
-                    password: bcrypt.hashSync(passwordValidated, 10),
-                });
-                res.status(200).json(newUser)
+                                                        email:emailValidated,
+                                                        password: bcrypt.hashSync(passwordValidated, 10),
+                                                    });
+                const findUser = await db.Users.findOne({
+                                                    where: {
+                                                        id: newUser.id
+                                                    },
+                                                    attributes:[
+                                                        'id',
+                                                        'email'
+                                                    ],
+                                                     
+                })
+                res.status(200).json(findUser)
             } else res.status(404).send("Password is wrong, it should have contains at least 10 characters, one lowercase letter, one uppercase letter and specials characters")
         } else res.status(404).send(`Email is wrong, it should have '@' and '.com' or '.co' `)
     }  else res.status(404).send(`Email already exists`)

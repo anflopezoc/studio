@@ -8,7 +8,9 @@ const { userFind,
         playlistUpdateFind,
         songInListFind,
         completePlaylistFind,
-        allSongs} = require('./playlist.functions');
+        allSongs,
+        queryDeezerAPI,
+        addSongstoLibrary} = require('./playlist.functions');
 
     
 exports.showPlayLists = async(req,res)=> {
@@ -189,20 +191,11 @@ exports.changeTitlePlayList = async (req, res) => {
 
 exports.musicapi = async (req,res) => {
     try {
-        const artist = req.query.artistName;
-        const options = {
-            method: 'GET',
-            url: 'https://deezerdevs-deezer.p.rapidapi.com/search',
-            params: {q: artist},
-            headers: {
-              'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
-              'x-rapidapi-key': '5da24c06d5mshf23f481d5904321p1ced7cjsn25f47998fc14'
-            }
-          };
+        const Data = await queryDeezerAPI(req.query.artistName);
 
-          const responseApi = await axios.request(options);
+        const songsInDB = await addSongstoLibrary(Data)
 
-          res.status(200).json(responseApi['data'].data)
+        res.status(200).json(songsInDB)
         
     } catch (error) {
         throw error;
