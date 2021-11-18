@@ -219,8 +219,8 @@ router.delete('/removesongplaylist', removeSongtoPlaylist);
 * @swagger
 * /myplaylists/requestapi:
 *        get:
-*          summary: Get information from artists in the Deezer API.
-*          description: Endpoint to get information from artists in the Deezer API. Returns information about the artist's discografic.
+*          summary: Add artist songs through to Deezer API to general library.
+*          description: Endpoint to add artist songs through Deezer API to the general library. You must request in Query the name of the artist or group to add in the general library. Returns the songs added to the general library.
 *          tags: [myPlaylists]
 *          security: 
 *                   - bearerAuth: []
