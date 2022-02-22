@@ -1,6 +1,4 @@
-const trianglefibonacci = (number) => {
-    const  x = 0;
-    const y = 1;
+const fibonacciSequence = (number) => {
     const fib = [];
 
     fib[0] = 0;
